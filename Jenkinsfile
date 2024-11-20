@@ -17,19 +17,18 @@ pipeline {
         stage('Install Terraform') {
             steps {
                 script {
-                    // Terraform 설치 (Ubuntu 시스템 기준)
+                    // Terraform 설치 (Ubuntu 시스템 기준, sudo 없이 설치)
                     sh '''
-                    # Terraform이 이미 설치되어 있는지 확인
                     if ! command -v terraform &> /dev/null
                     then
                         echo "Terraform not found. Installing..."
-                        # Terraform 설치
-                        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo tee /etc/apt/trusted.gpg.d/hashicorp.asc
-                        sudo apt update && sudo apt install -y terraform
+                        curl -fsSL https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -o terraform.zip
+                        unzip terraform.zip
+                        sudo mv terraform /usr/local/bin/
+                        rm terraform.zip
                     else
                         echo "Terraform is already installed."
                     fi
-                    # 설치된 Terraform 버전 확인
                     terraform version
                     '''
                 }
