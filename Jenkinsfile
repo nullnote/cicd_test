@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         TF_VERSION = '1.3.6'  // 사용할 Terraform 버전
-        TF_WORKSPACE = 'default'
+        TF_WORKSPACE = 'default' // 사용하고자 하는 워크스페이스 (선택사항)
     }
 
     stages {
@@ -63,4 +63,7 @@ pipeline {
 
         failure {
             // 실패한 경우 알림 등 처리 가능
-            echo 'Terraform p
+            echo 'Terraform pipeline failed.'
+        }
+    }
+}
