@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        TF_VERSION = '1.3.6'  
+        TF_VERSION = '1.3.6'  // 원하는 Terraform 버전
     }
 
     stages {
@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -it --rm hashicorp/terraform:1.3.6 init
+                    terraform init
                     '''
                 }
             }
