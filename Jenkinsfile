@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -it --rm hashicorp/terraform:1.3.6 plan -out=tfplan
+                    terraform plan
                     '''
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -it --rm hashicorp/terraform:1.3.6 apply -auto-approve tfplan
+                    terraform apply
                     '''
                 }
             }
