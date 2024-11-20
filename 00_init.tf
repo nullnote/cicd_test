@@ -15,7 +15,6 @@ provider "aws" {
 # ssh-keygen -m PEM -f jylee -q -N "abcde" -t rsa 실행하여 키 페어 생성
 # ec2 키페어 전달
 resource "aws_key_pair" "jylee-key" {
-  count      = length([for key in data.aws_key_pair.existing_keys.keys : key if key.key_name == "jylee-key"]) == 0 ? 1 : 0
   key_name   = "jylee-key"
   public_key = file("jylee.pub")
 
@@ -23,7 +22,5 @@ resource "aws_key_pair" "jylee-key" {
     Name = "jylee-key"
   }
 
+  
 }
-
-data "aws_key_pairs" "existing_keys" {}
-
