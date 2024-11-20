@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    terraform plan
+                    terraform plan -refresh=false
                     '''
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    terraform apply -auto-approve
+                    terraform apply -auto-approve -refresh=false
                     '''
                 }
             }
