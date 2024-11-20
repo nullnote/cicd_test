@@ -14,7 +14,6 @@ pipeline {
             }
         }
 
-        stages {
         stage('Install Terraform') {
             steps {
                 script {
@@ -90,4 +89,4 @@ pipeline {
         }
     }
 }
-}
+
