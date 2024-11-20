@@ -2,7 +2,11 @@ pipeline {
     agent any
     
     environment {
-        TF_VERSION = '1.3.6'  // 원하는 Terraform 버전
+        TF_VERSION = '1.3.6'
+        
+        AWS_ACCESS_KEY_ID = 'AKIAVRUVQYKSCLXNTRKK'
+        AWS_SECRET_ACCESS_KEY = '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'
+        AWS_DEFAULT_REGION = 'ap-northeast-2' 
     }
 
     stages {
