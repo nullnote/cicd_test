@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-            stages {
+        stages {
         stage('Install Terraform') {
             steps {
                 script {
@@ -89,4 +89,5 @@ pipeline {
             echo 'Terraform pipeline failed.'
         }
     }
+}
 }
