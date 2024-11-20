@@ -24,4 +24,3 @@ resource "aws_db_instance" "jylee-db" {
 }
 
 # Replicas 만드는 법 고민해보기
-#
