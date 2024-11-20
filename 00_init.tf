@@ -18,7 +18,11 @@ resource "aws_key_pair" "jylee-key" {
   key_name   = "jylee-key"
   public_key = file("jylee.pub")
 
+    lifecycle {
+    ignore_changes = [jylee-key]
+  }
   tags = {
     Name = "jylee-key"
   }
+
 }
