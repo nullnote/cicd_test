@@ -1,27 +1,54 @@
 pipeline {
-    agent {
-        docker {
-            image 'hashicorp/terraform:1.3.6'
-        }
+    agent any
+    
+    environment {
+        TF_VERSION = '1.3.6'  // 원하는 Terraform 버전
     }
 
     stages {
+
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                script {
+                    sh '''
+                    docker run -it --rm hashicorp/terraform:1.3.6 init
+                    '''
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan -out=tfplan'
+                script {
+                    sh '''
+                    docker run -it --rm hashicorp/terraform:1.3.6 plan -out=tfplan
+                    '''
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -auto-approve tfplan'
+                script {
+                    sh '''
+                    docker run -it --rm hashicorp/terraform:1.3.6 apply -auto-approve tfplan
+                    '''
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Terraform execution completed.'
+        }
+
+        success {
+            echo 'Terraform applied successfully.'
+        }
+
+        failure {
+            echo 'Terraform pipeline failed.'
         }
     }
 }
