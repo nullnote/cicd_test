@@ -14,27 +14,6 @@ pipeline {
             }
         }
 
-        stage('Install Terraform') {
-            steps {
-                script {
-                    // Terraform 설치 (Ubuntu 시스템 기준, sudo 없이 설치)
-                    sh '''
-                    if ! command -v terraform &> /dev/null
-                    then
-                        echo "Terraform not found. Installing..."
-                        curl -fsSL https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -o terraform.zip
-                        unzip terraform.zip
-                        sudo mv terraform /usr/local/bin/
-                        rm terraform.zip
-                    else
-                        echo "Terraform is already installed."
-                    fi
-                    terraform version
-                    '''
-                }
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 script {
