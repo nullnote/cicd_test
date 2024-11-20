@@ -41,6 +41,8 @@ pipeline {
             }
         }
 
+    }
+
     post {
         always {
             echo 'Terraform execution completed.'
